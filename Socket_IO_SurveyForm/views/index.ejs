@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect();
+            var form = $('#form');
+            var name = $('#name');
+            var location = $('#location');
+            var language = $('#language');
+            var comment = $('#comment');
+            var formBox = $('#form-msg-box');
+            form.submit(function(e){
+                e.preventDefault();
+                var data = {
+                    name: name.val(),
+                    location: location.val(),
+                    language: language.val(),
+                    comment: comment.val(),
+                }
+                console.log(data);
+                socket.emit('form submit', data);
+                name.val('');
+                comment.val('');
+            })
+            socket.on('form info', function(data){
+                var name = data.name;
+                var location = data.location;
+                var language = data.language;
+                var comment = data.comment;
+                var num = data.rand_num;
+                formBox.html('<ul><li><span style="font-weight: bold">Name: </span>'+name+'</li><li><span style="font-weight: bold">Location: </span>'+location+'</li><li><span style="font-weight: bold">Language: </span>'+language+'</li><li><span style="font-weight: bold">Comment: </span>'+comment+'</li><li><span style="font-weight: bold">Lucky Number: </span>'+num+'</li></ul>')
+            })
+        })
+    </script>
+    <title>Socket IO Form</title>
+</head>
+<body>
+    <div id="form-box">
+        <form id="form">
+            <table>
+                <tr>
+                    <td>Your Name: </td>
+                    <td><input type="text" name="name" id="name"></td>
+                </tr>
+                <tr>
+                    <td>Dojo Location: </td>
+                    <td><select name="location" id="location">
+                        <option value="Burbank">Burbank</option>
+                        <option value="San Jose">San Jose</option>
+                        <option value="Chicago">Chicago</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Favorite Language: </td>
+                    <td><select name="language" id="language">
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="CSS">CSS</option>
+                        <option value="HTML">HTML</option>
+                    </select></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>Comment (optional): </td>
+                </tr>
+                <tr>
+                    <td><textarea name="comment" id="comment" cols="30" rows="10"></textarea></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right"><input type="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="form-msg-box"></div>
+</body>
+</html>
