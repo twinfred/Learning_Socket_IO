@@ -1,0 +1,17 @@
+{
+  "name": "epic_button_game",
+  "version": "1.0.0",
+  "description": "When the button is clicked, it updates for all users in real-time.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Tim Winfred (twinfred@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
+  }
+}

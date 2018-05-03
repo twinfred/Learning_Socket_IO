@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect();
+            socket.on('Epic Button Count', function(data){
+                var count = data.count;
+                if(count == 1){
+                    $('#pushes').text("1 time.")
+                }else{
+                    $('#pushes').text(count+" times.")
+                }
+            });
+            $('#epicBtn').click(function(){
+                socket.emit('Clicked');
+            });
+            $('#resetBtn').click(function(){
+                socket.emit('Reset');
+            });
+        });
+    </script>
+    <title>Epic Button Game</title>
+</head>
+<body>
+    <h1>The Epic Button has been pushed <span id="pushes" style="font-weight: bold"></span></h1>
+    <h3>Push the button below to update the count!</h3>
+    <button id="epicBtn"><h2>Push the Epic Button</h2></button>
+    <button id="resetBtn">Reset Count</button>
+</body>
+</html>
