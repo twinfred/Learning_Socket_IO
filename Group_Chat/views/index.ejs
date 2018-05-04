@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect();
+            var user;
+            // USER LOGIN
+            $('#user-login').submit(function(e){
+                e.preventDefault();
+                user = $('#name').val();
+                console.log(user);
+                socket.emit('new user', user, function(){
+                    $('#login-wrapper').hide();
+                    $('#chatroom-wrapper').show();
+                    $('#name').val('');
+                })
+            })
+            // UPDATE USER LIST
+            socket.on('user added', function(data){
+                console.log(data)
+                var users_list = '';
+                for(x in data){
+                    users_list += '<div class="userHolder"><p>'+(Number(x)+1)+'. '+data[x]+'</p></div>'
+                }
+                $('#users').html(users_list);
+            });
+            // ADD USER MESSAGE
+            $('#messageArea').submit(function(e){
+                e.preventDefault();
+                console.log($('#message').val());
+                data = {
+                    message: $('#message').val(),
+                    user: user,
+                }
+                socket.emit('chat message', data);
+                $('#message').val('');
+            });
+            // SHOW MESSAGES
+            socket.on('messages display', function(data){
+                // console.log(data)
+                var chat_messages = '';
+                for(x in data){
+                    chat_messages += '<div class="messageHolder"><p><span style="font-weight: bold">'+data[x].user+' ('+data[x].time+'): </span>'+data[x].message+'</p></div>';
+                }
+                console.log(chat_messages);
+                $('#chatMessages').html(chat_messages);
+            })
+        });
+    </script>
+    <title>Group Chat</title>
+</head>
+<body>
+    <div id="login-wrapper">
+        <div id="login">
+            <form id="user-login">
+                <h2>Group Chat</h2>
+                <p>Enter your name to log in to the chatroom.</p>
+                <label>Name:</label>
+                <input type="text" name="name" id="name">
+                <input type="submit" value="Connect">
+            </form>
+        </div>
+    </div>
+    <div id="chatroom-wrapper">
+        <h1>Group Chat</h1>
+        <div id="users-wrapper">
+            <h3>Users in This Room:</h3>
+            <div id="users"></div>
+        </div>
+        <div id="chat-wrapper">
+            <h3>Chat Messages:</h3>
+            <div id="chatMessages"></div>
+            <div id="messageBox">
+                <form id="messageArea">
+                    <table>
+                        <tr>
+                            <td><textarea name="message" id="message" cols="50" rows="5" placeholder="Type your message here."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Send"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

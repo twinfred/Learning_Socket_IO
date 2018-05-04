@@ -1,0 +1,17 @@
+{
+  "name": "group_chat",
+  "version": "1.0.0",
+  "description": "A group chat room.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Tim Winfred (twinfred@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "ejs": "*",
+    "socket.io": "*"
+  }
+}

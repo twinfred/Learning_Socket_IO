@@ -1,0 +1,154 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* STANDARD CSS CLASSES */
+h1, h2, h3, p, label, textarea {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 40px;
+    margin-bottom: 15px;
+}
+h2 {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 35px;
+    margin-bottom: 15px;
+}
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-bottom: 12px;
+}
+p, label {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 15px;
+}
+input {
+    margin: 7px 0px;
+}
+table {
+    width: 100%;
+}
+tr {
+    text-align: right;
+}
+/* MY CSS */
+#login-wrapper {
+    position: fixed;
+    top: 34%;
+    left: 36%;
+    width: 400px;
+}
+#login {
+    width: 100%;
+    padding: 30px;
+    margin: 0 auto;
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+#chatroom-wrapper {
+    display: none;
+    width: 90%;
+    background-color: rgb(226, 226, 226);
+    margin: 0 auto;
+    padding: 20px;
+}
+#users-wrapper {
+    width: 20%;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+#users {
+    background-color: white;
+    padding: 10px;
+    box-shadow: inset 2px 2px 2px rgb(211, 211, 211);
+    height: 400px;
+    overflow-y: scroll;
+}
+.userHolder {
+    background-color: rgb(151, 200, 255);
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.userHolder p {
+    margin-bottom: 0px;
+}
+#chat-wrapper {
+    width: 78%;
+    display: inline-block;
+    vertical-align: top;
+}
+#chatMessages {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: inset 2px 2px 2px rgb(211, 211, 211);
+    height: 400px;
+    overflow-y: scroll;
+}
+.messageHolder {
+    background-color: rgb(151, 255, 151);
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.messageHolder p {
+    margin-bottom: 0px;
+}
