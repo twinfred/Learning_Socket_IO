@@ -152,3 +152,27 @@ tr {
 .messageHolder p {
     margin-bottom: 0px;
 }
+/* EASTER EGG */
+.easter_egg {
+    position: fixed;
+    left: 1600px;
+    top: 42px;
+}
+.easter_egg_bubble {
+    position: fixed;
+    left: 1860px;
+    top: -28px;
+    transform: rotate(10deg);
+    width: 235px;
+    display: none;
+}
+.bubble_thought {
+    position: fixed;
+    left: 1920px;
+    top: 10px;
+    width: 150px;
+    font-size: 20px;
+    line-height: 27px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    display: none;
+}

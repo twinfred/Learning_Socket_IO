@@ -52,6 +52,35 @@
                 console.log(chat_messages);
                 $('#chatMessages').html(chat_messages);
             })
+            // CHAT TEXTAREA ENTER = SUBMIT
+            $(function textAreaEnter(){
+                $('#message').keypress(function(e){
+                    var code = (e.keyCode ? e.keyCode : e.which);
+                    console.log(code);
+                    if (code == 13) {
+                        $("#submit").trigger('click');
+                        return true;
+                    }
+                })
+            });
+            // SECRET EASTER EGG
+            $(document).on('keydown', function(e){
+                console.log(event.which)
+                if(e.which == 37){
+                    $('.easter_egg').animate({left: "-=5px"}, 0);
+                    $('.easter_egg_bubble').animate({left: "-=5px"}, 0);
+                    $('.bubble_thought').animate({left: "-=5px"}, 0);
+                }
+                if(e.which == 39){
+                    $('.easter_egg').animate({left: "+=5px"}, 0);
+                    $('.easter_egg_bubble').animate({left: "+=5px"}, 0);
+                    $('.bubble_thought').animate({left: "+=5px"}, 0);
+                }
+                if(e.which == 74){
+                    $('.easter_egg_bubble').fadeIn();
+                    $('.bubble_thought').fadeIn();
+                }
+            })
         });
     </script>
     <title>Group Chat</title>
@@ -70,13 +99,16 @@
     </div>
     <div id="chatroom-wrapper">
         <h1>Group Chat</h1>
+        <!-- USERS ONLINE AREA -->
         <div id="users-wrapper">
             <h3>Users in This Room:</h3>
             <div id="users"></div>
         </div>
+        <!-- CHAT MESSAGES AREA -->
         <div id="chat-wrapper">
             <h3>Chat Messages:</h3>
             <div id="chatMessages"></div>
+            <!-- MESSAGE CREATE AREA -->
             <div id="messageBox">
                 <form id="messageArea">
                     <table>
@@ -84,12 +116,16 @@
                             <td><textarea name="message" id="message" cols="50" rows="5" placeholder="Type your message here."></textarea></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" value="Send"></td>
+                            <td><input id="submit" type="submit" value="Send"></td>
                         </tr>
                     </table>
                 </form>
             </div>
         </div>
     </div>
+    <!-- EASTER EGG -->
+    <img class= "easter_egg" src="/jessica_rabbit.png" alt="jessica rabbit">
+    <img src="/thought_bubble.png" alt="thought bubble" class="easter_egg_bubble">
+    <h3 class="bubble_thought">I'm not bad, I'm just drawn that way!</h3>
 </body>
 </html>
