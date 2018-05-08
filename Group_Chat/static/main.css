@@ -168,11 +168,14 @@ tr {
 }
 .bubble_thought {
     position: fixed;
-    left: -320px;
-    top: 10px;
+    left: -325px;
+    top: 9px;
     width: 150px;
-    font-size: 20px;
-    line-height: 27px;
+    font-size: 17px;
+    line-height: 20px;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    display: none;
+}
+.patrick {
     display: none;
 }
